@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'helloworld',
+    'blog',
 ]
 
 # Cache backend is optional, but recommended to speed up user agent parsing
@@ -132,3 +133,6 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+ADMIN_SITE_HEADER = "ADMINISTRATION"
