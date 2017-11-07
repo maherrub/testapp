@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
+#custom definition
+from .validators import *
+
 # Create your models here.
 
 #create custom manager to be used in Post Model on addition to objects manager
@@ -17,6 +20,7 @@ class Post(models.Model):
         ('published', 'Published'),
     )
 
+    video = models.FileField(upload_to='uploads/blog', validators=[validate_videoitem_extension], null=True, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='blog_posts')

@@ -121,18 +121,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 STATICFILES_DIRS = (
 	('css', os.path.join(STATIC_ROOT , 'css')),
 	('js', os.path.join(STATIC_ROOT , 'js')),
 	('img', os.path.join(STATIC_ROOT , 'img')),
     ('video', os.path.join(STATIC_ROOT , 'video')),
     ('audio', os.path.join(STATIC_ROOT , 'audio')),
+    ('uploads', os.path.join(MEDIA_ROOT , 'uploads')),
+
 )
 
 
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 
 ADMIN_SITE_HEADER = "ADMINISTRATION"
