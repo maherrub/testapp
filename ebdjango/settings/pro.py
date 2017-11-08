@@ -10,7 +10,9 @@ ALLOWED_HOSTS = ['127.0.0.1',
                 'http://testappapp.nedccmpyec.ap-southeast-1.elasticbeanstalk.com', 
                 'testappapp.nedccmpyec.ap-southeast-1.elasticbeanstalk.com',
                 'http://ip-172-31-25-204.ap-southeast-1.compute.internal',
-                'ip-172-31-25-204.ap-southeast-1.compute.internal',]
+                'ip-172-31-25-204.ap-southeast-1.compute.internal',
+                'https://testapp-static.s3.amazonaws.com',
+                'testapp-static.s3.amazonaws.com',]
 
 # Database
 DATABASES = {
