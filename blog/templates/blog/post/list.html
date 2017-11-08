@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load staticfiles %}
+{% load user_agents %}
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
@@ -8,18 +9,43 @@
 <head>
     <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
     <style>
-        body {
-        font-family: "Lato", sans-serif;
-         background: #E9EAED;
+        
+        /* start of devices & browsers with orientation support css defs */
+         @media screen and (orientation: landscape) {
+            #tv {
+
+            }
         }
 
+        {% if request|is_mobile %}
+        @media screen and (orientation: landscape) {
+            #tv {
+          
+            }
+        }
+        {% endif %}
 
+        @media screen and (orientation: portrait) {
+            #tv-container {
+                margin-top:2em;
+            }
+        }
+        /* end of devices & browsers with orientation support css defs */
+
+
+        /* start of additional css definitions to hide the texts on small media */
         @media screen and (max-width: 480px) {
         label {
             font-size: 0px;
             padding: 0px !important;
         }}
+        /* end of additional css definitions to hide the texts on small media */
 
+        /* start of common page css definitions */
+        body {
+            font-family: "Lato", sans-serif;
+            background: #E9EAED;
+        }
 
         .videoContainer 
         {
@@ -71,9 +97,9 @@
             border-radius:100%;
             cursor:pointer;
         }
-
+        /*reference "{% static 'img\img_7.jpg' %}" */
         button#playpausebtn{
-            background-image:url("/static/img/play80.png");
+            background-image:url("{% static 'img/play80.png'  %}");
             background-repeat: no-repeat;
             background-position: center; 
             border: none;
@@ -87,7 +113,7 @@
          button#playpausebtn:hover{ opacity: 1;}
 
          button#fullscreenbtn{
-            background-image:url("/static/img/fscreen16.png");
+            background-image:url("{% static 'img/fscreen16.png' %}");
             background-repeat: no-repeat;
             background-position: center; 
             border: none;
@@ -99,7 +125,7 @@
          }
 
          button#mutebtn{
-             background-image:url("/static/img/mute30.png");
+             background-image:url("{% static 'img/mute30.png' %}");
             background-repeat: no-repeat;
             background-position: center; 
             border: none;
@@ -110,8 +136,9 @@
         }
 
         button#mutebtn:hover{ opacity: 1;}
-
+        /* end of common page css definitions */
     </style>
+
 
 <script>
     var vid, playbtn, seekslider, curtimetext, durtimetext, mutebtn, volumeslider, fullscreenbtn;
@@ -142,13 +169,13 @@
         
         if (vid.paused){
             vid.play();
-            playbtn.style.background='url("/static/img/pause80.png")';
+            playbtn.style.background='url("{% static 'img/pause80.png' %}")';
             
             
            
         } else {
             vid.pause();
-            playbtn.style.backgroundImage='url("/static/img/play80.png")';
+            playbtn.style.backgroundImage='url("{% static 'img/play80.png' %}")';
             
         }
     }
@@ -177,10 +204,10 @@
     function vidmute(){
         if (vid.muted){
             vid.muted = false;
-            mutebtn.style.background='url("/static/img/unmute30.png")';
+            mutebtn.style.background='url("{% static 'img/unmute30.png' %}")';
         } else {
             vid.muted = true;
-            mutebtn.style.background='url("/static/img/mute30.png")';
+            mutebtn.style.background='url("{% static 'img/mute30.png' %}")';
         }
 
     }

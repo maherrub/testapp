@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load staticfiles %}
+{% load user_agents %}
+
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
@@ -8,17 +10,48 @@
 <head>
     <link href="{% static 'css/socialmedia.css' %}" rel="stylesheet">
     <style>
-        body {
-        font-family: "Lato", sans-serif;
-         background: #E9EAED;
+
+        /* start of devices & browsers with orientation support css defs */
+         @media screen and (orientation: landscape) {
+            #tv {
+
+            }
         }
 
+        {% if request|is_mobile %}
+        @media screen and (orientation: landscape) {
+            #tv {
+          
+            }
+        }
+        {% endif %}
 
+        @media screen and (orientation: portrait) {
+            #tv-container {
+                margin-top:2em;
+            }
+        }
+        /* end of devices & browsers with orientation support css defs */
+
+
+        /* start of additional css definitions to hide the texts on small media */
         @media screen and (max-width: 480px) {
         label {
             font-size: 0px;
             padding: 0px !important;
         }}
+        /* end of additional css definitions to hide the texts on small media */
+
+
+
+        /* start of common page css definitions */
+        body {
+        font-family: "Lato", sans-serif;
+         background: #E9EAED;
+        }
+        /* end of common page css definitions */
+
+        
     </style>
 </head>
 
