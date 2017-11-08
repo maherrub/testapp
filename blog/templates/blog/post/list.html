@@ -42,17 +42,19 @@
 
         div#video_controls_bar{
             background: #333;
-            padding-top:10px;
-            padding-left:15px;
-            padding-right:15px;
-            padding-bottom: 5px;
+            padding-top:5px;
+            padding-left:5px;
+            padding-right:5px;
+            padding-bottom:1px;
             color:#ccc;
             font-family:  "Lato", sans-serif;
             font-size: 12px;
             margin-top: -10px;
         }
 
-        
+        div#video_title_bar{
+             background: rgba(175, 0, 0, 0.97);
+        }
 
         input[type='range']{
             -webkit-appearance: none !important;
@@ -71,14 +73,14 @@
         }
 
         button#playpausebtn{
-            background-image:url("/static/img/play16.png");
+            background-image:url("/static/img/play80.png");
             background-repeat: no-repeat;
             background-position: center; 
             border: none;
-            width: 16px;
-            height:20px;
+            width: 80px;
+            height:80px;
             cursor: pointer;
-            opacity: 0.9;
+            opacity: 0;
 
         }
 
@@ -97,16 +99,17 @@
          }
 
          button#mutebtn{
-             background-image:url("/static/img/mute16.png");
+             background-image:url("/static/img/mute30.png");
             background-repeat: no-repeat;
             background-position: center; 
             border: none;
-            width: 16px;
-            height:20px;
+            width: 30px;
+            height:30px;
             cursor: pointer;
-            opacity: 0.9;
+            opacity: 0;
+        }
 
-         }
+        button#mutebtn:hover{ opacity: 1;}
 
     </style>
 
@@ -139,13 +142,13 @@
         
         if (vid.paused){
             vid.play();
-            playbtn.style.background='url("/static/img/pause16.png")';
+            playbtn.style.background='url("/static/img/pause80.png")';
             
             
            
         } else {
             vid.pause();
-            playbtn.style.backgroundImage='url("/static/img/play16.png")';
+            playbtn.style.backgroundImage='url("/static/img/play80.png")';
             
         }
     }
@@ -174,10 +177,10 @@
     function vidmute(){
         if (vid.muted){
             vid.muted = false;
-            mutebtn.style.background='url("/static/img/mute16.png")';
+            mutebtn.style.background='url("/static/img/unmute30.png")';
         } else {
             vid.muted = true;
-            mutebtn.style.background='url("/static/img/unmute16.png")';
+            mutebtn.style.background='url("/static/img/mute30.png")';
         }
 
     }
@@ -210,7 +213,7 @@
         </div>
         
         <!--middle-->
-        <div class="col-6 mb-3">          
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">          
 
             <h1>POSTS</h1>
             {% for post in posts %}
@@ -218,26 +221,36 @@
             <div class="videoContainer">
                 
                 <video id="my_video" name="media">
-                    <!--
-                    <source src="/static/video/mov_bbb.mp4" type="video/mp4">	
-                                        
-                    <source src="/media/uploads/blog/mov_bbb.mp4" type="video/mp4">
-                    -->
-
                     <source src="{{ post.video.url }}" type="video/mp4">
-
-                    
                 </video>
-                <div id="video_controls_bar"> 
+
+                <div class="text-center" style="position: relative; margin-top:-35%; margin-bottom:20%;">
                     <button id="playpausebtn"></button>
-                    <span id="curtimetext" style="color:#e37574; font-weight:100;">00:00</span><span style="color:#e37574; font-weight:100;"> /</span> <span id="durtimetext" style="color:#e37574; font-weight:100;">00:00</span>
-                    <input id="seekslider" type="range" min="0" max="100" value="0" step="1" style="width:38%;">
-                    
-                    <button id="mutebtn"></button>
-                    <input id="volumeslider" type="range" min="0" max="100" value="100" step="1" style="width:10%;">
-                    <button id="fullscreenbtn"></button>
-                    <span style="color:#e37574; font-weight:100;">DISCOVER MINISTRIES</span>
                 </div>
+
+                 <div class="text-right" style="position: relative; margin-top:-7%; margin-bottom:0%;">
+                    <button id="mutebtn"></button>
+                </div>
+
+                <div id="video_title_bar" class="text-right" style="position: relative; margin-top:-6px; margin-bottom:-5px;">
+                    <small style="color:#e37574; font-weight:100;">DISCOVER MINISTRIES</small>
+                </div>
+
+                <div class="text-left" style="position: relative; margin-top:-23px; margin-bottom:7px;">
+                    <small id="curtimetext" style="color:#e37574; font-weight:100;">00:00</small><small style="color:#e37574; font-weight:100;"> /</small> <small id="durtimetext" style="color:#e37574; font-weight:100;">00:00</small>
+                </div>
+
+                <div class="text-center" id="video_controls_bar" style="overflow:hidden;"> 
+                    <small>SEEK</small>
+                    <input id="seekslider" type="range" min="0" max="100" value="0" step="1" style="width:70%;">
+                    <small>VOL</small>
+                    <input id="volumeslider" type="range" min="0" max="100" value="100" step="1" style="width:15%;">
+                    <!--
+                    <button id="fullscreenbtn"></button>
+                    -->
+                </div>
+
+
             </div>
             {% endif %}
 
